@@ -1,7 +1,8 @@
 import praw
 import config
 from yagmail import SMTP, inline
-import sys;
+import sys
+import time
 
 
 
@@ -40,7 +41,7 @@ def run_bot(r):
 
 	# Change authors below to add/remove which authors you want 
 	# The second value is their latest comment
-	selected_authors = {'tarrantula11': None, 'Ndborro': None, 'lyyphe2': None}
+	selected_authors = {'Ndborro': None, 'lyyphe2': None}
 
 	subreddit = r.subreddit('sportsbook')
 
@@ -61,7 +62,8 @@ def run_bot(r):
    						if selected_authors.get(comment.author) != comment:
    							print_border()
    							print("New post detected - Sending Email\n")
-	   						print(submission.title, comment.body, comment.author)
+							print "Author: ",
+							print(comment.author)
 	   						send_email(sub_title, comment.body, comment.author)
 	   						print("\nEmail sent")
 	   						print_border()
@@ -71,7 +73,9 @@ def run_bot(r):
 def send_email(title, body, author):
 	yag = SMTP('bryce1234sendredditupdates@gmail.com')
 	contents = [body]
-	yag.send('bryce1234sendredditupdates@gmail.com', "POTD", contents)
+	date = time.strftime("%d/%m/%Y")
+	title = "POTD "+date
+	yag.send('bryce1234sendredditupdates@gmail.com', title, contents)
 
 
 run_bot(bot_login())
