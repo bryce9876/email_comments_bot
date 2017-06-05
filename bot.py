@@ -49,7 +49,7 @@ def run_bot(r):
 
 		time.sleep(60*5)
 		
-		for submission in subreddit.new(limit=20):
+		for submission in subreddit.new(limit=12):
 
 	  		sub_title = submission.title  # Output: the submission's title
 	   		sub_title_list_form = sub_title.split(" ")
