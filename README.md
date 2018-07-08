@@ -1,2 +1,3 @@
-# email_comments_bot
-emails comments from specific redditors
+# Email Comments Bot
+Gets emails from when a Reddit user submits a comment.
+
